@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <style>
+        section {
+            display: flex;
+            height: 60vh;
+            width: 90%;
+            /* background: red; */
+            border: 2px solid green;
+            margin: 10px 5%;
+            padding: 15px;
+        }
+
+        #email-section {
+            /* background-color: blue; */
+            width: 35%;
+        }
+
+        #email-section span {
+            font-size: 24px;
+            display: inline-block;
+        }
+
+        #email-section div {
+            margin-left: 30px;
+            font-size: 28px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #email-logo {
+            width: 20px;
+            filter: invert(1);
+            margin: 10px 5px 0 5px;
+        }
+
+        form {
+            /* background: yellow; */
+            padding: 0 25px;
+            margin-left: 50px;
+        }
+
+        form span {
+            display: inline-block;
+            margin: 10px 30px 20px 30px;
+            /* width: 200px; */
+        }
+
+        form span input {
+            width: 300px;
+            font-size: 15px;
+            padding: 0 5px;
+            margin-bottom: 10px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        #city-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            color: white;
+            background-color: black;
+            position: absolute;
+            display: none;
+            z-index: 2;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            box-shadow: 10px 8px 16px 0px rgba(177, 166, 166, 0.2);
+        }
+
+
+
+        .dropdown-content li {
+            list-style-type: none;
+
+        }
+
+        #city-dropdown:hover .dropdown-content {
+            display: block;
+            z-index: 2;
+            background-color: rgb(19, 15, 15);
+            max-height: 200px;
+            overflow: scroll;
+        }
+        textarea{
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>LET US CONTACT YOU</h3>
+    <section>
+        <div id="email-section">
+            <img src="assets/envelope-regular.svg" alt="" id="email-logo">
+            <span>Email</span>
+            <div>
+                <a href="mailto:krishnagopalsharma9876@gmail.com">support@kas.com</a>
+
+            </div>
+        </div>
+        <form action="">
+            <span>
+                <!-- <label for="userName">Enter Name : </label> -->
+                <input type="text" name="userName" placeholder="Enter Name">
+            </span>
+            <span>
+                <!-- <label for="userName">Enter Email : </label> -->
+                <input type="text" name="userName" placeholder="Enter Email">
+            </span>
+            <span>
+                <!-- <label for="userName">Enter Mobile  number : </label> -->
+                <input type="text" name="userName" placeholder="Enter Mobile Number">
+            </span>
+            <span id="city-dropdown">
+                <!-- <label for="userName">Enter City : </label> -->
+                <input type="text" name="userName" placeholder="Enter City" id="city-search">
+                <div class="dropdown-content" id="results">
+                    <ul>
+                        <li>Mumbai</li>
+                        <li>Thane</li>
+                        <li>Pune</li>
+                        <li>Nagpur</li>
+                        <li>Nashik</li>
+                        <li>Delhi</li>
+                        <li>Bangalore</li>
+                        <li>Hyderabad</li>
+                        <li>Chennai</li>
+                        <li>Kolkata</li>
+                    </ul>
+                </div>
+            </span>
+            <!-- <span>
+                <input type="text">
+            </span> -->
+            <!-- <input type="text"> -->
+            <span>
+                <textarea id="w3review" name="w3review" rows="4" cols="81" placeholder="Please Share Your feedback">
+                </textarea>
+            </span>
+            <span>
+                <input type="file">
+            </span>
+            <button>Submit
+                
+            </button>
+
+
+        </form>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#city-search').on('keyup', function () {
+                let query = $(this).val().toLowerCase();
+                if (query.length > 0) {
+                    $('#results').show();
+                    $('#results li').filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(query) > -1);
+                    });
+                } else {
+                    $('#results').hide();
+                }
+            });
+
+            $(document).on('click', '#results li', function () {
+                $('#city-search').val($(this).text());
+                $('#results').hide();
+            });
+
+            $(document).click(function (event) {
+                if (!$(event.target).closest('#city-dropdown').length) {
+                    $('#results').hide();
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

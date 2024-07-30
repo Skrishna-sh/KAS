@@ -1,66 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAS the Luxury</title>
+    <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/button.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 </head>
-
 <body>
-    <header id="navigation">
-        <nav class="container">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/003/694/243/small/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg"
-                alt="">
-            <ul>
-
-                <li><a href="#home">Home</a></li>
-                <li><a href="#bmw">Collection</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div>
-                <span onclick="formSection()"><img src="/assets/user-solid.svg" alt=""></span>
-                <span onclick="console.log('Wishlist')">Wishlist</span>
-            </div>
-        </nav>
-    </header>
-    <main id="home">
-        <section>
-            <h1 data-aos="fade-up">Get Your Luxury</h1>
-            <p data-aos="fade-up">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora beatae vero ratione unde expedita vel?
-                Officia, maxime.
-            </p>
-            <button class="btn-101" data-aos="fade-up">
-                BUY NOW
-                <svg>
-                    <defs>
-                        <filter id="glow">
-                            <fegaussianblur result="coloredBlur" stddeviation="5"></fegaussianblur>
-                            <femerge>
-                                <femergenode in="coloredBlur"></femergenode>
-                                <femergenode in="coloredBlur"></femergenode>
-                                <femergenode in="coloredBlur"></femergenode>
-                                <femergenode in="SourceGraphic"></femergenode>
-                            </femerge>
-                        </filter>
-                    </defs>
-                    <rect />
-                </svg>
-            </button>
-
-        </section>
-        <div class="bottom-shadow"></div>
-        <video muted autoplay loop
-            src="./assets/vecteezy_3d-rendered-super-car-cinematic-front-view-in-dark_35355667.mp4"></video>
-    </main>
     <section id="collection">
         <div id="brand-names" data-aos="fade-right">
             <ul>
@@ -106,12 +57,6 @@
         </div>
         <!-- <audio src="./assets/car.mp3"></audio> -->
     </section>
-
-    <section class="loginform" id="loginform">
-
-    </section>
-
-
     <script src="assets/js/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -120,6 +65,7 @@
         });
 
         function gotobrandpage(name) {
+            console.log(name);
             window.location.replace("#" + name)
         }
 
@@ -161,18 +107,6 @@
                 elem.parentNode.classList.remove('change')
             }, 500)
         }
-        async function formSection() {
-            const formfetch = await fetch('form.html');
-            const formcode = await formfetch.text()
-            document.getElementById('loginform').innerHTML = formcode;
-        };
-
-        function signupSection(){
-            console.log("signup form");
-        }
-
-
     </script>
 </body>
-
 </html>
