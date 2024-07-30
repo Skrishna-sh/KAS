@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAS the Luxury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/button.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+
+<body>
+    <header id="navigation">
+        <nav class="container">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/003/694/243/small/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg"
+                alt="">
+            <ul>
+
+                <li><a href="#home">Home</a></li>
+                <li><a href="#bmw">Collection</a></li>
+                <li><a href=".">Contact</a></li>
+            </ul>
+            <div>
+                <span onclick="formSection()"><img src="/assets/user-solid.svg" alt=""></span>
+                <span onclick="console.log('Wishlist')">Wishlist</span>
+            </div>
+        </nav>
+    </header>
+    <main id="home">
+        <section>
+            <h1 data-aos="fade-up">Get Your Luxury</h1>
+            <p data-aos="fade-up">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora beatae vero ratione unde expedita vel?
+                Officia, maxime.
+            </p>
+            <button class="btn-101" data-aos="fade-up">
+                BUY NOW
+                <svg>
+                    <defs>
+                        <filter id="glow">
+                            <fegaussianblur result="coloredBlur" stddeviation="5"></fegaussianblur>
+                            <femerge>
+                                <femergenode in="coloredBlur"></femergenode>
+                                <femergenode in="coloredBlur"></femergenode>
+                                <femergenode in="coloredBlur"></femergenode>
+                                <femergenode in="SourceGraphic"></femergenode>
+                            </femerge>
+                        </filter>
+                    </defs>
+                    <rect />
+                </svg>
+            </button>
+
+        </section>
+        <div class="bottom-shadow"></div>
+        <video muted autoplay loop
+            src="./assets/vecteezy_3d-rendered-super-car-cinematic-front-view-in-dark_35355667.mp4"></video>
+    </main>
+    <section id="collection">
+        <div id="brand-names" data-aos="fade-right">
+            <ul>
+                <li onclick="gotobrandpage('bmw')"><img src="/assets/car_images/BMW/BMW-logo.png" alt=""
+                        srcset=""><span>BMW</span></li>
+                <li onclick="gotobrandpage('mercedez')"><img src="/assets/car_images/Mercedes/Mercedes-Logo1.png"
+                        alt=""><span>Mercedes</span></li>
+                <li><img src="/assets/car_images/Range Rover/image-removebg-preview.png" alt=""><span>Range Rover</span>
+                </li>
+            </ul>
+        </div>
+        <!-- bmw -->
+        <div class="container brands" id="bmw">
+            <span>
+                <h2 data-aos="fade-up">FROM BMW</h2>
+                <ul id="bmw-cars-list">
+                    <li data-aos="fade-up">model 1 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                    <li data-aos="fade-up">model 2 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                    <li data-aos="fade-up">model 3 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                </ul>
+            </span>
+            <div class="car-card" data-aos="fade-left">
+                <img id="bmw-car-Big-Image" src="./assets/car_images/BMW/1.png" class="slide-in-right " alt="BMW image"
+                    srcset="">
+                <div class="shadow slide-in-right"></div>
+            </div>
+        </div>
+        <!-- mercedez -->
+        <div class="container brands" id="mercedez">
+            <span>
+                <h2 data-aos="fade-up">FROM MERCEDES</h2>
+                <ul id="mercedes-cars-list">
+                    <li data-aos="fade-up">model 1 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                    <li data-aos="fade-up">model 2 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                    <li data-aos="fade-up">model 3 <img src="./assets/arrow.png" alt="" srcset=""></li>
+                </ul>
+            </span>
+            <div class="car-card" data-aos="fade-left">
+                <img id="mercedes-car-Big-Image" src="./assets/car_images/BMW/1.png" class="slide-in-right "
+                    alt="BMW image" srcset="">
+                <div class="shadow slide-in-right"></div>
+            </div>
+        </div>
+        <!-- <audio src="./assets/car.mp3"></audio> -->
+    </section>
+
+    <section class="loginform" id="loginform">
+
+    </section>
+
+
+    <script src="assets/js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 2000,
+        });
+
+        function gotobrandpage(name) {
+            window.location.replace("#" + name)
+        }
+
+        async function getcarsfromJson() {
+            const fetchdata = await fetch('./cars.json');
+            const fetchdatatoJson = await fetchdata.json()
+            // console.log(fetchdatatoJson);
+
+            const bmwcarlist = document.getElementById('bmw-cars-list')
+            bmwcarlist.innerHTML = ''
+            fetchdatatoJson.cars['bmw'].forEach(element => {
+                bmwcarlist.innerHTML += `<li onclick="changecarImage('bmw-car-Big-Image','${element.image}')" data-aos="fade-up"><div>${element.name}<br/><span>${element.modelName}</span></div><img src="./assets/arrow.png" alt="" srcset=""></li>`
+            });
+            changecarImage('bmw-car-Big-Image', fetchdatatoJson.cars['bmw'][0].image);
+
+
+            const mercedescarlist = document.getElementById('mercedes-cars-list')
+            mercedescarlist.innerHTML = ''
+            fetchdatatoJson.cars['mercedes'].forEach(element => {
+
+                mercedescarlist.innerHTML += `<li onclick="changecarImage('mercedes-car-Big-Image','${element.image}')" data-aos="fade-up"><div>${element.name}<br/><span>${element.modelName}</span></div><img src="./assets/arrow.png" alt="" srcset=""></li>`
+            });
+            changecarImage('mercedes-car-Big-Image', fetchdatatoJson.cars['mercedes'][0].image);
+        }
+        getcarsfromJson()
+
+        function changecarImage(elementId, url) {
+            const elem = document.getElementById(elementId)
+            // elem.style.transform = ''
+            const newimge = document.createElement('img')
+            newimge.src = url
+            // console.log(newimge.src, elem.src);
+            if (newimge.src == elem.src)
+                return;
+            elem.parentNode.classList.add('change')
+
+            setTimeout(() => {
+                elem.src = url
+                elem.parentNode.classList.remove('change')
+            }, 500)
+        }
+        async function formSection() {
+            const formfetch = await fetch('form.html');
+            const formcode = await formfetch.text()
+            document.getElementById('loginform').innerHTML = formcode;
+        };
+
+        function signupSection(){
+            console.log("signup form");
+        }
+
+
+    </script>
+</body>
+
+</html>

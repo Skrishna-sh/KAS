@@ -1,0 +1,38 @@
+{
+    "cars": {
+        "bmw": [
+            {
+                "name": "model1",
+                "modelName": "1x1",
+                "image": "./assets/car_images/BMW/1.png"
+            },
+            {
+                "name": "model2",
+                "modelName": "2MZ",
+                "image": "./assets/car_images/BMW/2.png"
+            },
+            {
+                "name": "model3",
+                "modelName": "mmm",
+                "image": "./assets/car_images/BMW/3.png"
+            }
+        ],
+        "mercedes": [
+            {
+                "name": "model1",
+                "modelName": "1x1",
+                "image": "./assets/car_images/Mercedes/1.png"
+            },
+            {
+                "name": "model2",
+                "modelName": "2MZ",
+                "image": "./assets/car_images/Mercedes/2.png"
+            },
+            {
+                "name": "model3",
+                "modelName": "mmm",
+                "image": "./assets/car_images/Mercedes/3.png"
+            }
+        ]
+    }
+}
