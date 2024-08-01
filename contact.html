@@ -5,23 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/button.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="contact.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
     <style>
+        body {
+            margin-top: 14vh;
+        }
+
         section {
             display: flex;
             height: 60vh;
             width: 90%;
-            /* background: red; */
-            border: 2px solid green;
+            /* border: 2px solid green; */
             margin: 10px 5%;
             padding: 15px;
         }
 
         #email-section {
-            /* background-color: blue; */
             width: 35%;
         }
 
@@ -47,7 +55,6 @@
         }
 
         form {
-            /* background: yellow; */
             padding: 0 25px;
             margin-left: 50px;
         }
@@ -55,7 +62,6 @@
         form span {
             display: inline-block;
             margin: 10px 30px 20px 30px;
-            /* width: 200px; */
         }
 
         form span input {
@@ -65,6 +71,17 @@
             margin-bottom: 10px;
             height: 40px;
             border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form span input.invalid {
+            border-color: red;
+        }
+
+        form span .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
         }
 
         #city-dropdown {
@@ -84,11 +101,8 @@
             box-shadow: 10px 8px 16px 0px rgba(177, 166, 166, 0.2);
         }
 
-
-
         .dropdown-content li {
             list-style-type: none;
-
         }
 
         #city-dropdown:hover .dropdown-content {
@@ -98,8 +112,20 @@
             max-height: 200px;
             overflow: scroll;
         }
-        textarea{
+
+        textarea {
             border-radius: 5px;
+        }
+        /* #button-section{
+            background: red;
+            
+        } */
+        button{
+            width: 150px;
+            height: 30px;
+            font-size: 15px;
+            margin-left: 300px;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -112,25 +138,24 @@
             <span>Email</span>
             <div>
                 <a href="mailto:krishnagopalsharma9876@gmail.com">support@kas.com</a>
-
             </div>
         </div>
-        <form action="">
+        <form id="contact-form">
             <span>
-                <!-- <label for="userName">Enter Name : </label> -->
                 <input type="text" name="userName" placeholder="Enter Name">
+                <div class="error-message">Name is required</div>
             </span>
             <span>
-                <!-- <label for="userName">Enter Email : </label> -->
-                <input type="text" name="userName" placeholder="Enter Email">
+                <input type="text" name="userEmail" placeholder="Enter Email">
+                <div class="error-message">Valid email is required</div>
             </span>
             <span>
-                <!-- <label for="userName">Enter Mobile  number : </label> -->
-                <input type="text" name="userName" placeholder="Enter Mobile Number">
+                <input type="text" name="userMobile" placeholder="Enter Mobile Number">
+                <div class="error-message">Mobile number is required</div>
             </span>
             <span id="city-dropdown">
-                <!-- <label for="userName">Enter City : </label> -->
-                <input type="text" name="userName" placeholder="Enter City" id="city-search">
+                <input type="text" name="userCity" placeholder="Enter City" id="city-search">
+                <div class="error-message">City Name is required</div>
                 <div class="dropdown-content" id="results">
                     <ul>
                         <li>Mumbai</li>
@@ -145,35 +170,91 @@
                         <li>Kolkata</li>
                     </ul>
                 </div>
-            </span>
-            <!-- <span>
-                <input type="text">
-            </span> -->
-            <!-- <input type="text"> -->
-            <span>
-                <textarea id="w3review" name="w3review" rows="4" cols="81" placeholder="Please Share Your feedback">
-                </textarea>
+                <div class="error-message">City is required</div>
             </span>
             <span>
-                <input type="file">
+                <textarea id="feedback" name="userFeedback" rows="4" cols="81" placeholder="Please Share Your feedback"></textarea>
             </span>
-            <button>Submit
-                
-            </button>
-
-
+            <span>
+                <input type="file" name="userFile">
+            </span>
+            
+            <div id="button-section">
+                <button type="submit">Submit</button>
+            </div>
         </form>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const header = document.createElement("header");
+            header.id = "navigation";
+    
+            const nav = document.createElement("nav");
+            nav.className = "container";
+    
+            const img = document.createElement("img");
+            img.src = "https://static.vecteezy.com/system/resources/thumbnails/003/694/243/small/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg";
+            img.alt = "";
+    
+            const ul = document.createElement("ul");
+    
+            const liHome = document.createElement("li");
+            const aHome = document.createElement("a");
+            aHome.href = "#home";
+            aHome.textContent = "Home";
+            liHome.appendChild(aHome);
+    
+            const liCollection = document.createElement("li");
+            const aCollection = document.createElement("a");
+            aCollection.href = "#bmw";
+            aCollection.textContent = "Collection";
+            liCollection.appendChild(aCollection);
+    
+            const liContact = document.createElement("li");
+            const aContact = document.createElement("a");
+            aContact.href = "contact.html";
+            aContact.textContent = "Contact";
+            liContact.appendChild(aContact);
+    
+            ul.appendChild(liHome);
+            ul.appendChild(liCollection);
+            ul.appendChild(liContact);
+    
+            const div = document.createElement("div");
+    
+            const spanForm = document.createElement("span");
+            spanForm.onclick = function() { formSection(); };
+            const imgUser = document.createElement("img");
+            imgUser.src = "/assets/user-solid.svg";
+            imgUser.alt = "";
+            spanForm.appendChild(imgUser);
+    
+            const spanWishlist = document.createElement("span");
+            spanWishlist.onclick = function() { console.log('Wishlist'); };
+            spanWishlist.textContent = "Wishlist";
+    
+            div.appendChild(spanForm);
+            div.appendChild(spanWishlist);
+    
+            nav.appendChild(img);
+            nav.appendChild(ul);
+            nav.appendChild(div);
+    
+            header.appendChild(nav);
+    
+            document.body.prepend(header);
+        });
+    </script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-
-        $(document).ready(function () {
-            $('#city-search').on('keyup', function () {
+        $(document).ready(function() {
+            $('#city-search').on('keyup', function() {
                 let query = $(this).val().toLowerCase();
                 if (query.length > 0) {
                     $('#results').show();
-                    $('#results li').filter(function () {
+                    $('#results li').filter(function() {
                         $(this).toggle($(this).text().toLowerCase().indexOf(query) > -1);
                     });
                 } else {
@@ -181,18 +262,77 @@
                 }
             });
 
-            $(document).on('click', '#results li', function () {
+            $(document).on('click', '#results li', function() {
                 $('#city-search').val($(this).text());
                 $('#results').hide();
             });
 
-            $(document).click(function (event) {
+            $(document).click(function(event) {
                 if (!$(event.target).closest('#city-dropdown').length) {
                     $('#results').hide();
                 }
             });
-        });
 
+            $('#contact-form').on('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+
+                // Validate Name
+                const userName = $('input[name="userName"]');
+                if (userName.val().trim() === "") {
+                    userName.addClass('invalid');
+                    userName.next('.error-message').show();
+                    isValid = false;
+                } else {
+                    userName.removeClass('invalid');
+                    userName.next('.error-message').hide();
+                }
+
+                // Validate Email
+                const userEmail = $('input[name="userEmail"]');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(userEmail.val().trim())) {
+                    userEmail.addClass('invalid');
+                    userEmail.next('.error-message').show();
+                    isValid = false;
+                } else {
+                    userEmail.removeClass('invalid');
+                    userEmail.next('.error-message').hide();
+                }
+
+                // Validate Mobile
+                const userMobile = $('input[name="userMobile"]');
+                if (userMobile.val().trim() === "") {
+                    userMobile.addClass('invalid');
+                    userMobile.next('.error-message').show();
+                    isValid = false;
+                } else {
+                    userMobile.removeClass('invalid');
+                    userMobile.next('.error-message').hide();
+                }
+
+                // Validate City
+                const userCity = $('input[name="userCity"]');
+                if (userCity.val().trim() === "") {
+                    userCity.addClass('invalid');
+                    userCity.next('.error-message').show();
+                    isValid = false;
+                } else {
+                    userCity.removeClass('invalid');
+                    userCity.next('.error-message').hide();
+                }
+
+                if (isValid) {
+                    alert(
+                        "Name: " + userName.val().trim() + "\n" +
+                        "Email: " + userEmail.val().trim() + "\n" +
+                        "Mobile: " + userMobile.val().trim() + "\n" +
+                        "City: " + userCity.val().trim() + "\n" +
+                        "Feedback: " + $('#feedback').val().trim()
+                    );
+                }
+            });
+        });
     </script>
 </body>
 

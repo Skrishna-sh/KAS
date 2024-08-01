@@ -23,7 +23,8 @@
         width: 400px;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
+        padding: 10px;
     }
 
     label {
@@ -47,44 +48,61 @@
     button:hover {
         cursor: pointer;
     }
-    div span:nth-child(2){
+
+    div span:nth-child(2) {
         color: blue;
         cursor: pointer;
     }
+
+    #signup-section {
+        display: none;  
+    }
+    /* #form-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } */
 </style>
 
-<form>
-    <div>
-        <label for="myemail">Email</label>
-        <input type="text">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="text">
-    </div>
-    <div>
-        <button type="button">login</button>
-    </div>
-    <div>
-        <span>Do not have an account : </span>
-        <span onclick="signupSection()">SignUp</span>
-    </div>
-</form>
-<!--  -->
-<form>
-    <div>
-        <label for="myname">Name</label>
-        <input type="text">
-    </div>
-    <div>
-        <label for="myemail">Email</label>
-        <input type="text">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="text">
-    </div>
-    <div>
-        <button type="button">SignUp</button>
-    </div>
-</form>
+
+<div id="form-section">
+    <form id="signin-section">
+        <div>
+            <label for="myemail">Email</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text">
+        </div>
+        <div>
+            <button type="submit" onclick="submitform() ">login</button>
+        </div>
+        <div>
+            <span>Do not have an account : </span>
+            <span onclick="signupSection()">SignUp</span>
+        </div>
+    </form>
+    <!--  -->
+    <form id="signup-section">
+        <div>
+            <label for="myname">Name</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="myemail">Email</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text">
+        </div>
+        <div>
+            <button type="submit" onclick="submitform()">SignUp</button>
+        </div>
+        <div>
+            <span>Already have an account : </span>
+            <span onclick="signinSection()">SignIn</span>
+        </div>
+    </form>
+</div>

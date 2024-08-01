@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <header id="navigation">
+    <!-- <header id="navigation">
         <nav class="container">
             <img src="https://static.vecteezy.com/system/resources/thumbnails/003/694/243/small/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg"
                 alt="">
@@ -30,7 +30,7 @@
                 <span onclick="console.log('Wishlist')">Wishlist</span>
             </div>
         </nav>
-    </header>
+    </header> -->
     <main id="home">
         <section>
             <h1 data-aos="fade-up">Get Your Luxury</h1>
@@ -111,6 +111,67 @@
 
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const header = document.createElement("header");
+            header.id = "navigation";
+
+            const nav = document.createElement("nav");
+            nav.className = "container";
+
+            const img = document.createElement("img");
+            img.src = "https://static.vecteezy.com/system/resources/thumbnails/003/694/243/small/car-icon-in-flat-style-simple-traffic-icon-free-vector.jpg";
+            img.alt = "";
+
+            const ul = document.createElement("ul");
+
+            const liHome = document.createElement("li");
+            const aHome = document.createElement("a");
+            aHome.href = "#home";
+            aHome.textContent = "Home";
+            liHome.appendChild(aHome);
+
+            const liCollection = document.createElement("li");
+            const aCollection = document.createElement("a");
+            aCollection.href = "#bmw";
+            aCollection.textContent = "Collection";
+            liCollection.appendChild(aCollection);
+
+            const liContact = document.createElement("li");
+            const aContact = document.createElement("a");
+            aContact.href = "contact.html";
+            aContact.textContent = "Contact";
+            liContact.appendChild(aContact);
+
+            ul.appendChild(liHome);
+            ul.appendChild(liCollection);
+            ul.appendChild(liContact);
+
+            const div = document.createElement("div");
+
+            const spanForm = document.createElement("span");
+            spanForm.onclick = function () { formSection(); };
+            const imgUser = document.createElement("img");
+            imgUser.src = "/assets/user-solid.svg";
+            imgUser.alt = "";
+            spanForm.appendChild(imgUser);
+
+            const spanWishlist = document.createElement("span");
+            spanWishlist.onclick = function () { console.log('Wishlist'); };
+            spanWishlist.textContent = "Wishlist";
+
+            div.appendChild(spanForm);
+            div.appendChild(spanWishlist);
+
+            nav.appendChild(img);
+            nav.appendChild(ul);
+            nav.appendChild(div);
+
+            header.appendChild(nav);
+
+            document.body.prepend(header);
+        });
+    </script>
 
     <script src="assets/js/script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -167,11 +228,32 @@
             document.getElementById('loginform').innerHTML = formcode;
         };
 
-        function signupSection(){
+        function signupSection() {
             console.log("signup form");
         }
 
 
+    </script>
+    <script>
+        function signinSection() {
+            const signup = document.getElementById("signup-section");
+            signup.style.display = 'none';
+            document.getElementById('signin-section').style.display = 'block';
+            const divs = document.querySelectorAll('form div');
+            divs.forEach(div => {
+                div.style.margin = '20px';
+            });
+        }
+
+        function signupSection() {
+            const signup = document.getElementById("signup-section");
+            signup.style.display = 'block';
+            document.getElementById('signin-section').style.display = 'none';
+        }
+
+        function submitform(){
+            console.log("form submitted");
+        }
     </script>
 </body>
 
